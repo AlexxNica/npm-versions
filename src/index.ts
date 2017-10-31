@@ -25,7 +25,7 @@ client.distTags.fetch(uri, params, function (error, data, raw, res) {
   console.log();
   console.log(`Latest versions of the package ${packageName}:`);
   console.log();
-  // console.log(semver.maxSatisfying(['5.4.1', '4.0.1', '1.0.0'], '*'));
+  console.log(versionsList);
   console.log(
     // (<any>Object).values(data).sort(semver.rcompare)[0]
   );
