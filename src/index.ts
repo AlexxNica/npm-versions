@@ -17,7 +17,6 @@ client.distTags.fetch(uri, params, function (error, data, raw, res) {
   const dataArray = (<any>Object).entries(data);
   const versionsListDummy: string[] = [];
 
-
   for (const prop in data) {
     versionsListDummy.push(`${prop} = ${data[prop]}`);
   };
@@ -27,7 +26,7 @@ client.distTags.fetch(uri, params, function (error, data, raw, res) {
   });
 
   console.log();
-  console.log((<any>chalk).blue(`Latest versions of the package ${packageName}:`));
+  console.log((<any>chalk).blue(`LATEST VERSIONS OF THE PACKAGE '${packageName}':`));
   console.log(versionsList);
   console.log(
     // (<any>Object).values(data).sort(semver.rcompare)[0]
