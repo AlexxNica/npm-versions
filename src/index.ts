@@ -1,11 +1,18 @@
-import * as packageJson from './modules/package-json';
+'use strict';
 
-// if(typeof packageJson === 'function') {
-  packageJson('ava').then(json => {
-    console.log(json);
-  });
-// } else {
-//   console.log('error');
-//   console.log(typeof packageJson);
-//   console.log(packageJson);
-// }
+import { spawn } from 'child_process';
+import * as npm from 'npm';
+
+
+// console.log(npm.load());
+// console.log(npm.commands.view(['typescript', 'versions'], console.log));
+
+// var npmconf = require('../lib/config/core.js')
+// var configDefs = npmconf.defs
+// var shorthands = configDefs.shorthands
+// var conf = nopt(types, shorthands)
+
+
+
+console.log(JSON.stringify(npm.config.get('proxy')));
+// console.log(npm.commands.info);

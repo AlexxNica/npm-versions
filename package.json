@@ -11,7 +11,12 @@
   "author": "",
   "license": "SEE LICENSE IN PROPRIETARY.LICENSE.MD",
   "devDependencies": {
+    "@types/node": "^8.0.47",
+    "@types/npm": "^2.0.29",
     "chalk": "^2.3.0",
+    "commander": "^2.11.0",
+    "nopt": "^4.0.1",
+    "npm": "^5.5.1",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "typescript": "^2.7.0-dev.20171029"
