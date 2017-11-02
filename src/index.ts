@@ -1,53 +1,102 @@
+#!/usr/bin/env node
 'use strict';
 
 import * as RegClient from 'npm-registry-client';
 import * as semver from 'semver';
 import * as chalk from 'chalk';
-import * as commander from 'commander';
+import * as yargs from 'yargs';
 
 // const packageName = (typeof process.argv[2] === 'string') && process.argv[2];
-const client = new RegClient({});
-const uri = "https://registry.npmjs.org/npm";
+/* const client = new RegClient({});
+const uri = 'https://registry.npmjs.org/npm';
 const params = {
   timeout: 1000,
   // package: packageName,
   auth: {},
+} */
+
+const options = {
+  client: new RegClient({}),
+  uri: 'https://registry.npmjs.org/npm',
+  params: {
+    timeout: 1000,
+    // package: packageName,
+    auth: {},
+  },
 }
 
-commander
-  .version('0.0.1')
-  .usage('<packageName> [otherPackages...] [options]')
-  .arguments('<packageName> [otherPackages...]')
-  .option('--no-unstable', 'exclude unstable versions');
+yargs
+  .usage('Usage: <packageName> [otherPackages...] [options]')
+  .example('', '')
+  .count('verbose')
+  .alias('v', 'verbose')
+  .demandCommand(1)
+  .command('$0', 'the default command', (yargs): any => {
+    console.log('this command will be run by default')
+  })
+  .argv;
 
-commander.action(function(packageName, otherPackages) {
-  // Check if at least one package has been specified.
-  console.log(packageName);
-  if (typeof packageName === 'undefined') {
-    console.error('no package specified!');
-    process.exit(1);
-  }
+console.log(yargs.argv);
 
-  console.log('npm-versions %s', packageName);
-  if (otherPackages) {
-    otherPackages.forEach(function(packageName) {
-      console.log('npm-versions %s', packageName);
-    });
-  }
-});
+const log = {
+  verboseLevel: yargs.argv.verbose,
+  warn: function (message) {
+    return console.warn(`warn - ${this.verboseLevel}\n${message}`);
+  },
 
-// Command handler
-commander.on('--help', function () {
-  console.log('  Examples:');
-  console.log('');
-  console.log('    $ custom-help --help');
-  console.log('    $ custom-help -h');
-  console.log('');
-});
+  info: function (message) {
+    return console.info(`info - ${this.verboseLevel}\n${message}`);
+  },
 
-commander.parse(process.argv);
+  debug: function (message) {
+    return console.debug(`debug - ${this.verboseLevel}\n${message}`);
+  },
 
-// client.distTags.fetch(uri, params, function(error, data, raw, res) {
+  error: function (message) {
+    return console.error(`error - ${this.verboseLevel}\n${message}`);
+  },
+};
+
+log.warn('Showing only important stuff');
+log.info('Showing semi-important stuff too');
+log.debug('Extra chatty mode');
+
+// commander
+//   .version('0.0.1')
+//   .arguments('<packageName> [otherPackages...]')
+//   .option('--no-unstable', 'exclude unstable versions');
+
+// commander.action((packageName, otherPackages) => {
+//   // Check if at least one package has been specified.
+//   // console.log(packageName);
+//   console.log(process.argv.slice(2).length);
+//   if (typeof packageName === 'undefined') {
+//     console.error('no package specified!');
+//     process.exit(1);
+//   }
+
+//   // (typeof packageName === 'undefined') || console.error('part1!') || console.log('part2');
+
+//   console.log('npm-versions %s', packageName);
+//   if (otherPackages) {
+//     otherPackages.forEach((packageName) => {
+//       console.log('npm-versions %s', packageName);
+//     });
+//   }
+// });
+
+// // Command handler
+// commander.on('--help', () => {
+//   console.log('  Examples:');
+//   console.log('');
+//   console.log('    $ custom-help --help');
+//   console.log('    $ custom-help -h');
+//   console.log('');
+// });
+
+// commander.parse(process.argv);
+
+// client.distTags.fetch(uri, params, (error, data, raw, res) => {
 //   const dataArray = (<any>Object).entries(data);
 //   const versionsListDummy: string[] = [];
 
@@ -55,7 +104,7 @@ commander.parse(process.argv);
 //     versionsListDummy.push(`${data[prop]} - ${prop}`);
 //   };
 
-//   const versionsList = versionsListDummy.reduce(function (accumulator, currentValue) {
+//   const versionsList = versionsListDummy.reduce((accumulator, currentValue) => {
 //     return accumulator + '\n' + currentValue;
 //   });
 
