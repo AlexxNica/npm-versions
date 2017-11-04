@@ -24,7 +24,7 @@ const getPackage = (packageName) => {
     const versionsListDummy: string[] = [];
 
     for (const prop in data) {
-      versionsListDummy.push(`[${(<any>chalk).blueBright(prop)}]: ${data[prop]}`);
+      versionsListDummy.push(`${(<any>chalk).bold.blueBright(prop)}: ${data[prop]}`);
     };
 
     const versionsList = versionsListDummy.reduce((accumulator, currentValue) => {
@@ -32,7 +32,7 @@ const getPackage = (packageName) => {
     });
 
     console.log();
-    console.log((<any>chalk).bold.blueBright(`LATEST VERSIONS OF THE PACKAGE ${packageName}:`));
+    console.log(`Latest verisons of the package \`${packageName}:\``);
     console.log(versionsList);
   });
 
