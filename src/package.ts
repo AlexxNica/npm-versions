@@ -1,4 +1,4 @@
-import * as RegClient from 'npm-registry-client';
+import * as fetch from './fetch';
 import * as semver from 'semver';
 import * as chalk from 'chalk';
 import log from './log';
@@ -9,18 +9,18 @@ const getPackage = (packageName) => {
   }
   // log.log('here ->'+packageName.length+'<-');
 
-  const client = {
-    init: new RegClient({}),
-    uri: 'https://registry.npmjs.org/npm',
-    params: {
-      timeout: 1000,
-      package: packageName,
-      auth: {},
-    },
-  };
+  // const client = {
+  //   init: new RegClient({}),
+  //   uri: 'https://registry.npmjs.org/npm',
+  //   params: {
+  //     timeout: 1000,
+  //     package: packageName,
+  //     auth: {},
+  //   },
+  // };
 
-  const clientFetch = client.init.distTags;
-  console.log(clientFetch);
+  // const clientFetch = client.init;
+  // console.log(clientFetch.whoami);
 
   // const clientFetch = client.init.distTags.fetch(client.uri, client.params, (error, data, raw, res) => {
   //   const dataArray = (<any>Object).entries(data);

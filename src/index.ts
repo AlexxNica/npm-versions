@@ -20,7 +20,7 @@ export default yargs
     (async () => {
       // console.log(packages);
       for (let pkg of packages) {
-        console.log(getPackage(pkg));
+        getPackage(pkg);
         // await getPackage(pkg).then(function(versionsList){
         //   console.log();
         //   console.log(`Latest verisons of the package :`);
