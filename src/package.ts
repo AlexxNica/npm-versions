@@ -19,23 +19,26 @@ const getPackage = (packageName) => {
     },
   };
 
-  const clientFetch = client.init.distTags.fetch(client.uri, client.params, (error, data, raw, res) => {
-    const dataArray = (<any>Object).entries(data);
-    const versionsListDummy: string[] = [];
+  const clientFetch = client.init.distTags;
+  console.log(clientFetch);
 
-    for (const prop in data) {
-      versionsListDummy.push(`${(<any>chalk).bold.blueBright(prop)}: ${data[prop]}`);
-    };
+  // const clientFetch = client.init.distTags.fetch(client.uri, client.params, (error, data, raw, res) => {
+  //   const dataArray = (<any>Object).entries(data);
+  //   const versionsListDummy: string[] = [];
 
-    const versionsList = versionsListDummy.reduce((accumulator, currentValue) => {
-      return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
-    });
-    return versionsList;
-  }).then(function() {
-    return console.log(clientFetch);
-  }).catch(function() {
-    return console.log('Failed');
-  });
+  //   for (const prop in data) {
+  //     versionsListDummy.push(`${(<any>chalk).bold.blueBright(prop)}: ${data[prop]}`);
+  //   };
+
+  //   const versionsList = versionsListDummy.reduce((accumulator, currentValue) => {
+  //     return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
+  //   });
+  //   return versionsList;
+  // }).then(function() {
+  //   return console.log(clientFetch);
+  // }).catch(function() {
+  //   return console.log('Failed');
+  // });
 };
 
 export default getPackage;
