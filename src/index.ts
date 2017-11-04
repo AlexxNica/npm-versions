@@ -5,6 +5,7 @@ import * as RegClient from 'npm-registry-client';
 import * as semver from 'semver';
 import * as chalk from 'chalk';
 import * as yargs from 'yargs';
+import log from './log';
 
 // const packageName = (typeof process.argv[2] === 'string') && process.argv[2];
 /* const client = new RegClient({});
@@ -37,29 +38,10 @@ yargs
   .argv;
 
 console.log(yargs.argv);
-
-const log = {
-  verboseLevel: yargs.argv.verbose,
-  warn: function (message) {
-    return console.warn(`warn - ${this.verboseLevel}\n${message}`);
-  },
-
-  info: function (message) {
-    return console.info(`info - ${this.verboseLevel}\n${message}`);
-  },
-
-  debug: function (message) {
-    return console.debug(`debug - ${this.verboseLevel}\n${message}`);
-  },
-
-  error: function (message) {
-    return console.error(`error - ${this.verboseLevel}\n${message}`);
-  },
-};
-
-log.warn('Showing only important stuff');
-log.info('Showing semi-important stuff too');
-log.debug('Extra chatty mode');
+log.error('Showing only errors (error)');
+log.warn('Showing only important stuff (warn)');
+log.info('Showing semi-important stuff too (info)');
+log.debug('Extra chatty mode (debug)');
 
 // commander
 //   .version('0.0.1')
