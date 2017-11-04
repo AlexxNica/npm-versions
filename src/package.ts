@@ -7,20 +7,12 @@ const getPackage = (packageName) => {
   if(packageName.length === 0) {
     return log.error('You need to pass at least one package name to the command.');
   }
-  // log.log('here ->'+packageName.length+'<-');
 
-  // const client = {
-  //   init: new RegClient({}),
-  //   uri: 'https://registry.npmjs.org/npm',
-  //   params: {
-  //     timeout: 1000,
-  //     package: packageName,
-  //     auth: {},
-  //   },
-  // };
+  const options = {
+    registryUrl: 'https://registry.npmjs.org/npm',
+  };
 
-  // const clientFetch = client.init;
-  // console.log(clientFetch.whoami);
+  console.log(fetch);
 
   // const clientFetch = client.init.distTags.fetch(client.uri, client.params, (error, data, raw, res) => {
   //   const dataArray = (<any>Object).entries(data);
