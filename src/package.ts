@@ -24,19 +24,15 @@ const getPackage = (packageName) => {
     const versionsListDummy: string[] = [];
 
     for (const prop in data) {
-      versionsListDummy.push(`${data[prop]} - ${prop}`);
+      versionsListDummy.push(`[${(<any>chalk).blueBright(prop)}]: ${data[prop]}`);
     };
 
     const versionsList = versionsListDummy.reduce((accumulator, currentValue) => {
-      return accumulator + '\n' + currentValue;
+      return `${accumulator} ### ${currentValue}`;
     });
 
     console.log();
     console.log((<any>chalk).bold.blueBright(`LATEST VERSIONS OF THE PACKAGE ${packageName}:`));
-    console.log((<any>chalk).greenBright(
-      (<any>Object).values(data).sort(semver.rcompare)[0])
-      + ' - Highest version regardless of channel '
-    );
     console.log(versionsList);
   });
 
