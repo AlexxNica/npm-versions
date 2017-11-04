@@ -40,7 +40,7 @@
     "test": "./tests"
   },
   "bin": {
-    "npm": "./bin/npm-versions-cli.js"
+    "npm": "./src/index.ts"
   },
   "config": {
     "publishtest": false

@@ -7,7 +7,8 @@ import log from './log';
 
 const packages = yargs.argv._;
 
-export default yargs
+export default () => {
+  yargs
   .usage('Usage: <packageName> [otherPackages...] [options]')
   .example('', '')
   .count('verbose')
@@ -26,3 +27,4 @@ export default yargs
     })();
   })
   .argv;
+}
