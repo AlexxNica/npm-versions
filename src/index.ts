@@ -20,8 +20,15 @@ export default yargs
     (async () => {
       // console.log(packages);
       for (let pkg of packages) {
-        // console.log(pkg);
-        await getPackage(pkg);
+        console.log(getPackage(pkg));
+        // await getPackage(pkg).then(function(versionsList){
+        //   console.log();
+        //   console.log(`Latest verisons of the package :`);
+        //   console.log(versionsList);
+        // })
+        // .catch((reason) => {
+        //   console.warn('Handle rejected promise (' + reason + ') here.');
+        // });
       };
     })();
   })
