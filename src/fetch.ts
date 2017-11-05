@@ -25,12 +25,19 @@ const fetch = (options) => {
   requestOptions.hostname = options.registryUrl;
   requestOptions.path = options.registryPath;
 
-
-  return https.request(requestOptions, async (res) => {
+  const req = https.request(requestOptions, (res) => {
     res.setEncoding("utf8");
+    var body = '';
     res.on('data', (d) => {
-      process.stdout.write(d);
+      body += d;
     });
+
+    res.on('end', () => {
+      var parsed = JSON.parse(body);
+      console.log(parsed);
+    });
+
+    // console.log(parsedOne);
 
   }).on('error', (e) => {
     console.error((<any>chalk).bold.red('# Summary'));

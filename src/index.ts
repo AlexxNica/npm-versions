@@ -17,18 +17,10 @@ export default yargs
     if (typeof packages === 'undefined' || !packages.length){
       return log.error('You need to pass at least one package name to the command.');
     }
-    (async () => {
+    (() => {
       // console.log(packages);
       for (let pkg of packages) {
         getPackage(pkg);
-        // await getPackage(pkg).then(function(versionsList){
-        //   console.log();
-        //   console.log(`Latest verisons of the package :`);
-        //   console.log(versionsList);
-        // })
-        // .catch((reason) => {
-        //   console.warn('Handle rejected promise (' + reason + ') here.');
-        // });
       };
     })();
   })
