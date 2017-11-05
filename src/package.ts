@@ -1,4 +1,4 @@
-import * as fetch from './fetch';
+import fetch from './fetch';
 import * as semver from 'semver';
 import * as chalk from 'chalk';
 import log from './log';
@@ -9,10 +9,12 @@ const getPackage = (packageName) => {
   }
 
   const options = {
-    registryUrl: 'https://registry.npmjs.org/npm',
+    registryUrl: 'https://registry.npmjs.org/',
+    packageName: 'babel-eslint',
   };
 
-  console.log(fetch);
+  // console.log(fetch(options));
+  fetch(options);
 
   // const clientFetch = client.init.distTags.fetch(client.uri, client.params, (error, data, raw, res) => {
   //   const dataArray = (<any>Object).entries(data);
