@@ -24,18 +24,12 @@
 import * as querystring from 'querystring';
 import * as https from 'https';
 
-const postData = querystring.stringify({
-  'msg': 'Hello World!'
-});
-
 const options = {
   hostname: 'registry.npmjs.org',
   port: 443,
   path: '/-/package/babel-eslint/dist-tags',
   method: 'GET',
   headers: {
-    // 'Content-Type': 'application/x-www-form-urlencoded',
-    // 'Content-Length': Buffer.byteLength(postData)
     'Accept': 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*',
   }
 };
@@ -56,6 +50,6 @@ req.on('error', (e) => {
   console.error(`problem with request: ${e.message}`);
 });
 
-// write data to request body
-req.write(postData);
 req.end();
+
+export default req;

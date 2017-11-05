@@ -10,7 +10,7 @@ const getPackage = (packageName) => {
 
   const options = {
     registryUrl: 'https://registry.npmjs.org/',
-    packageName: 'babel-eslint',
+    packageName: packageName,
   };
 
   // console.log(fetch(options));

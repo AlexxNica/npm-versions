@@ -20,21 +20,16 @@ const fetch = (options) => {
     return console.error('Error! The registry URL and package name must be set correctly.');
   }
 
-  options.registryUrl = options.registryUrl.replace(/\/+$/, '');
-  // options.registryUrl = `${options.registryUrl}/package/${options.packageName}/dist-tags`;
+  options.registryUrl = options.registryUrl.replace(/^(https)|(:\/\/)|(www)|(\/)$/ig, '');
   options.registryPath = `/-/package/${options.packageName}/dist-tags`;
-  // requestOptions.hostname = options.registryUrl;
-  requestOptions.hostname = 'registry.npmjs.org';
+  requestOptions.hostname = options.registryUrl;
   requestOptions.path = options.registryPath;
-  console.log(requestOptions);
 
 
   return https.request(requestOptions, async (res) => {
-    console.log(res.statusCode);
     res.setEncoding("utf8");
     res.on('data', (d) => {
       process.stdout.write(d);
-      console.log('Success?');
     });
 
   }).on('error', (e) => {
@@ -46,7 +41,7 @@ const fetch = (options) => {
     console.error();
     console.error((<any>chalk).bold.red('# Stack'));
     console.error(e.stack);
-  });
+  }).end();
 };
 
 export default fetch;
