@@ -26,10 +26,9 @@ const fetch = (options) => {
     requestOptions.path = `/-/package/${options.packageName}/dist-tags`;
 
     const req = https.request(requestOptions, (res) => {
-      let parsed = {};
       const body = [];
 
-      res.setEncoding("utf8");
+      res.setEncoding('utf8');
       res.on('data', (d) => {
         body.push(d);
       });

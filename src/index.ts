@@ -46,7 +46,9 @@ export default yargs
             const versionsList = packagesFormatted.reduce((accumulator, currentValue) => {
               return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
             });
-            console.log(`${(<any>chalk).bold.yellowBright(pkg)} -> ${versionsList}`);
+            log.log(`${(<any>chalk).bold.yellowBright(pkg)} -> ${versionsList}`);
+          }).catch((error) => {
+            log.log(`Error: ${error}`);
           });
         });
       };
