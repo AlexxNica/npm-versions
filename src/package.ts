@@ -10,21 +10,23 @@ const defaultOptions = {
 };
 
 /* Function that will be exported */
-const getPackage = async (options): Promise<any> => {
-  options = Object.assign(defaultOptions,
-    (typeof options === 'string' ? { packageName: options, } : options)
-  );
+const packageModule = {
+  getPackage: async (options): Promise<any> => {
+    options = Object.assign(defaultOptions,
+      (typeof options === 'string' ? { packageName: options, } : options)
+    );
 
-  // Check if any package has been specified. Throw error if not.
-  if (options.packageName.length === 0) {
-    log.error('You need to pass at least one package name to the command.');
-    process.exit(1);
-  }
+    // Check if any package has been specified. Throw error if not.
+    if (options.packageName.length === 0) {
+      log.error('You need to pass at least one package name to the command.');
+      process.exit(1);
+    }
 
-  return await fetch(options);
-};
+    return await fetch(options);
+  },
+}
 
 /************
 ** EXPORTS **
 ************/
-export default getPackage;
+export default packageModule;

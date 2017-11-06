@@ -5,7 +5,7 @@ import * as yargs from 'yargs';
 import * as chalk from 'chalk';
 import * as semver from 'semver';
 import utils from './utils';
-import getPackage from './package';
+import packageModule from './package';
 import log from './log';
 
 interface Options {
@@ -28,7 +28,7 @@ export default yargs
     }
     (() => {
       for (let pkg of packages) {
-        getPackage(pkg).then((html) => {
+        packageModule.getPackage(pkg).then((html) => {
           const parsedHtml = JSON.parse(html);
           const parsedHtmlArray = Object.entries(parsedHtml);
           const parsedSortedValues = Object.values(parsedHtml).sort(semver.rcompare);

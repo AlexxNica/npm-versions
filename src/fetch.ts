@@ -10,6 +10,7 @@ const fetch = (options) => {
       path: '',
       method: 'GET',
       headers: {
+        // https://github.com/npm/npm-registry-client#requests
         'Accept': 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*',
       },
     }
