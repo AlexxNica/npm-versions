@@ -28,13 +28,13 @@ export default yargs
           const packageResult = [];
           let packageResultObject = {};
 
-          // parsedHtmlArray.forEach(([versionName, versionValue]) => {
-          //   packageResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
-          // });
+          parsedHtmlArray.forEach(([versionName, versionValue]) => {
+            packageResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
+          });
 
-          // const versionsList = packageResult.reduce((accumulator, currentValue) => {
-          //   return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
-          // });
+          const versionsList = packageResult.reduce((accumulator, currentValue) => {
+            return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
+          });
 
           // console.log(
           //   Object.values(parsedHtml).sort(semver.rcompare)[0]
