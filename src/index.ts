@@ -35,16 +35,15 @@ export default yargs
             // packageResult.push([versionName, versionValue]);
           });
 
-          // console.log(
-            utils.getKeyByValue(
+            utils.reSortToArray(
               parsedHtml,
-              parsedSortedValues[0]
+              parsedSortedValues
             ).then((result) => {
               console.log(result);
+              console.log();
             });
-          // );
 
-          console.log(parsedSortedValues);
+          // console.log(parsedSortedValues);
 
           // var list = { "latest": '3.8.0', "beta": '4.0.1', "old": '2.0.2' };
           // const keysSorted = Object.values(list).sort(semver.rcompare);
