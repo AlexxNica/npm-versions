@@ -14,9 +14,7 @@ interface Options {
 }
 
 const packages = yargs.argv._;
-const options: Options = {
-  registryUrl: 'https://registry.npmjs.org/',
-}
+const options: Options = {};
 
 export default yargs
   .usage('Usage: <packageName> [otherPackages...] [options]')
@@ -30,8 +28,8 @@ export default yargs
     }
     (() => {
       for (let pkg of packages) {
-        options.packageName = pkg;
-        getPackage(options).then((html) => {
+        // options.packageName = pkg;
+        getPackage(pkg).then((html) => {
           const parsedHtml = JSON.parse(html);
           const parsedHtmlArray = Object.entries(parsedHtml);
           const parsedSortedValues = Object.values(parsedHtml).sort(semver.rcompare);
