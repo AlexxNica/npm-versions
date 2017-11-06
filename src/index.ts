@@ -4,6 +4,7 @@
 import * as yargs from 'yargs';
 import * as chalk from 'chalk';
 import * as semver from 'semver';
+import utils from './utils';
 import getPackage from './package';
 import log from './log';
 
@@ -34,17 +35,13 @@ export default yargs
             // packageResult.push([versionName, versionValue]);
           });
 
-          function getKeyByValue(object, value) {
-            return Promise.resolve(Object.keys(object).find((key) => {
-              return object[key] === value
-            }));
-          }
-
           // console.log(
-            getKeyByValue(
+            utils.getKeyByValue(
               parsedHtml,
               parsedSortedValues[0]
-            )
+            ).then((result) => {
+              console.log(result);
+            });
           // );
 
           console.log(parsedSortedValues);
