@@ -20,7 +20,7 @@ export default yargs
     (() => {
       // console.log(packages);
       for (let pkg of packages) {
-        getPackage(pkg);
+        (getPackage as any)(pkg).then((html) => {console.log(html);});
       };
     })();
   })
