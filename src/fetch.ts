@@ -21,8 +21,6 @@ const fetch = (options) => {
       return console.error('Error! The registry URL and package name must be set correctly.');
     }
 
-    // options.registryUrl = options.registryUrl.replace(/^(https?)|(:\/\/)|(www)|(\/)$/ig, '');
-    // options.registryPath = `/-/package/${options.packageName}/dist-tags`;
     requestOptions.hostname = utils.getOnlyHostname(options.registryUrl);
     requestOptions.path = `/-/package/${options.packageName}/dist-tags`;
 
