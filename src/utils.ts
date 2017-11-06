@@ -16,11 +16,12 @@ const utils = {
      */
     const result = [];
     let objFind = '';
+    let lol = 'test';
     for (const value of values) {
       objFind = Object.keys(obj).find((key) => obj[key] === value);
       result.push([objFind, value]);
     }
-    return await result;
+    return await Promise.all([result, lol]);
   },
   mergeArrays: async (firstArray: Array<string>, secondArray: Array<string>) => {
 
