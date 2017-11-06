@@ -30,20 +30,20 @@ export default yargs
           const packageResult = [];
           let packageResultObject = {};
 
-          parsedHtmlArray.forEach(([versionName, versionValue]) => {
-            // packageResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
-            // packageResult.push([versionName, versionValue]);
+          utils.reSortToArray(
+            parsedHtml,
+            parsedSortedValues
+          ).then((result) => {
+            const pkgResult = [];
+            for (const res of result) {
+              const versionName = res[0];
+              const versionValue = res[1];
+              pkgResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
+            }
+            return pkgResult;
+          }).then((result) => {
+            console.log(result);
           });
-
-            utils.reSortToArray(
-              parsedHtml,
-              parsedSortedValues
-            ).then((result) => {
-              console.log(result);
-              console.log();
-            });
-
-          // console.log(parsedSortedValues);
 
           // var list = { "latest": '3.8.0', "beta": '4.0.1', "old": '2.0.2' };
           // const keysSorted = Object.values(list).sort(semver.rcompare);
