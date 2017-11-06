@@ -12,12 +12,6 @@ import packageModule from './package';
 const packages = yargs.argv._;
 const options: Options = {};
 
-const regex = (arg) => {
-  const regexFormula = /(?:[0-9]+)/gi;
-  return arg.match(regexFormula).toString().replace(/\,/g, '');
-
-};
-
 export default yargs
   .usage('Usage: <packageName> [otherPackages...] [options]')
   .example('', '')
@@ -33,34 +27,23 @@ export default yargs
         packageModule.getPackage(pkg).then((html) => {
           const parsedHtml = JSON.parse(html);
           const parsedHtmlArray = Object.entries(parsedHtml);
-          // console.log(semver.valid('0.3.13a'));
-          // const parsedSortedValues = Object.values(parsedHtml).sort(semver.rcompare);
-          const parsedSortedValues = Object.values(['1.5.0', '9.0.2.3', '0.3.13a', '14.59.9o.a.p.']).sort( (a, b): any => {
-            const aFormatted = parseInt(regex(a), 10);
-            const bFormatted = parseInt(regex(b), 10);
-            return aFormatted - bFormatted;
-            // const d = [];
-            // d.push([a, regex(a)]);
-            // d.push([b, regex(b)]);
-            // console.log(d);
-            // return regex(a) + regex(b);
-            // console.log(`a: ${parseInt(regex(a), 10)}`);
-            // console.log(`b: ${parseInt(regex(b), 10)}`);
-            // if (aFormatted < bFormatted) {
-            //   return b;
-            // }
-            // if (aFormatted > bFormatted) {
-            //   return a;
-            // }
-            // return 0;
-          });
-          console.log(parsedSortedValues);
+          const badFormattedVersions = [];
+          const parsedSortedValues = Object.values(parsedHtml).map((a) => {
+            const aValidated = semver.valid(a);
+            if (aValidated === null) {
+              badFormattedVersions.push(a);
+              return;
+            }
+            return semver.valid(aValidated);
+          }).sort(semver.rcompare).filter(n=>n); // removes all null versions (undefined/wrong format)
+          const parsedSortedAllValues = parsedSortedValues.concat(badFormattedVersions);
+          // console.log(badFormattedVersions);
           const packageResult = [];
           let packageResultObject = {};
 
           utils.reSortToArray(
             parsedHtml,
-            parsedSortedValues
+            parsedSortedAllValues
           ).then((packagesSorted) => {
             const pkgResult = [];
             for (const res of packagesSorted) {
