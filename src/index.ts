@@ -4,14 +4,10 @@
 import * as yargs from 'yargs';
 import * as chalk from 'chalk';
 import * as semver from 'semver';
+import { Options } from './DefaultInterfaces';
 import utils from './utils';
-import packageModule from './package';
 import log from './log';
-
-interface Options {
-  registryUrl?: string;
-  packageName?: string;
-}
+import packageModule from './package';
 
 const packages = yargs.argv._;
 const options: Options = {};

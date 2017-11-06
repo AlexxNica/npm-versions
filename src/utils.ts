@@ -6,6 +6,7 @@ const utils = {
      */
     return await Object.keys(obj).find((key) => obj[key] === value);
   },
+
   getKeysByValues: async (obj: Object, values: Array<string>) => {
     /**
      * @obj = Full object to reSort.
@@ -17,6 +18,7 @@ const utils = {
     }
     return await result;
   },
+
   reSortToArray: async (obj: Object, values: Array<string>) => {
     /**
      * @obj = Full object to reSort.
@@ -30,9 +32,10 @@ const utils = {
     }
     return await result;
   },
+
   getOnlyHostname: (url: string) => {
     return url.replace(/^(https?)|(:\/\/)|(www)|(\/)$/ig, '');
-  }
+  },
 }
 
 export default utils;
