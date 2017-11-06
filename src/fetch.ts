@@ -2,53 +2,49 @@ import * as https from 'https';
 import * as chalk from 'chalk';
 
 const fetch = (options) => {
-  const opts = options || {};
-  const requestOptions = {
-    hostname: '',
-    port: 443,
-    path: '',
-    method: 'GET',
-    headers: {
-      'Accept': 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*',
-    },
-  }
 
-  if (
-    (typeof options.registryUrl === 'undefined' || options.registryUrl.length === 0)
-    || (typeof options.packageName === 'undefined' || options.packageName.length === 0)
-  ){
-    return console.error('Error! The registry URL and package name must be set correctly.');
-  }
+  return new Promise((resolve, reject) => {
+    const requestOptions = {
+      hostname: '',
+      port: 443,
+      path: '',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*',
+      },
+    }
 
-  options.registryUrl = options.registryUrl.replace(/^(https)|(:\/\/)|(www)|(\/)$/ig, '');
-  options.registryPath = `/-/package/${options.packageName}/dist-tags`;
-  requestOptions.hostname = options.registryUrl;
-  requestOptions.path = options.registryPath;
+    if ((typeof options.registryUrl === 'undefined' || options.registryUrl.length === 0) || (typeof options.packageName === 'undefined' || options.packageName.length === 0) ){ return console.error('Error! The registry URL and package name must be set correctly.'); }
 
-  const req = https.request(requestOptions, (res) => {
-    res.setEncoding("utf8");
-    var body = '';
-    res.on('data', (d) => {
-      body += d;
-    });
+    options.registryUrl = options.registryUrl.replace(/^(https)|(:\/\/)|(www)|(\/)$/ig, '');
+    options.registryPath = `/-/package/${options.packageName}/dist-tags`;
+    requestOptions.hostname = options.registryUrl;
+    requestOptions.path = options.registryPath;
 
-    res.on('end', () => {
-      var parsed = JSON.parse(body);
-      console.log(parsed);
-    });
+    const req = https.request(requestOptions, (res) => {
+      let parsed = {};
 
-    // console.log(parsedOne);
+      res.setEncoding("utf8");
 
-  }).on('error', (e) => {
-    console.error((<any>chalk).bold.red('# Summary'));
-    console.error('Error: Could not connect to the registry.');
-    console.error();
-    console.error((<any>chalk).bold.red('# Message'));
-    console.error(e.message);
-    console.error();
-    console.error((<any>chalk).bold.red('# Stack'));
-    console.error(e.stack);
-  }).end();
+      const body = [];
+
+      res.on('data', (d) => {
+        body.push(d);
+      });
+
+      res.on('end', () => resolve(body.join('')));
+
+    }).on('error', (e) => {
+      console.error((<any>chalk).bold.red('# Summary'));
+      console.error('Error: Could not connect to the registry.');
+      console.error();
+      console.error((<any>chalk).bold.red('# Message'));
+      console.error(e.message);
+      console.error();
+      console.error((<any>chalk).bold.red('# Stack'));
+      console.error(e.stack);
+    }).end();
+  });
 };
 
 export default fetch;

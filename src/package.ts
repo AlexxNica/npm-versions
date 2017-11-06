@@ -13,7 +13,10 @@ const getPackage = (packageName) => {
     packageName: packageName,
   };
 
-  return fetch(options);
+  return fetch(options).then((html)=>{console.log(html);});
+    // .then( (html) => {
+    //   console.log(html);
+    // });
 };
 
 export default getPackage;
