@@ -20,7 +20,16 @@ export default yargs
     (() => {
       // console.log(packages);
       for (let pkg of packages) {
-        (getPackage as any)(pkg).then((html) => {console.log(html);});
+        getPackage(pkg).then((html) => {
+          const parsedHtml = JSON.parse(html);
+          const parsedHtmlArray = Object.entries(parsedHtml);
+          const packageResult = [];
+
+          for (const item of parsedHtmlArray) {
+            packageResult.push(`[${item[0]}]: ${item[1]}`);
+          }
+          // console.log(packageResult.forEach(()=>));
+        });
       };
     })();
   })

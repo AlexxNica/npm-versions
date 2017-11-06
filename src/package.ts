@@ -3,9 +3,9 @@ import * as semver from 'semver';
 import * as chalk from 'chalk';
 import log from './log';
 
-const getPackage = (packageName) => {
+const getPackage = (packageName): Promise<any> => {
   if(packageName.length === 0) {
-    return log.error('You need to pass at least one package name to the command.');
+    log.error('You need to pass at least one package name to the command.');
   }
 
   const options = {
