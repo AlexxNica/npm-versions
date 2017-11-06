@@ -14,9 +14,6 @@ const getPackage = (packageName): Promise<any> => {
   };
 
   return fetch(options);
-    // .then( (html) => {
-    //   console.log(html);
-    // });
 };
 
 export default getPackage;

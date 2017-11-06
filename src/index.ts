@@ -21,7 +21,6 @@ export default yargs
       return log.error('You need to pass at least one package name to the command.');
     }
     (() => {
-      // console.log(packages);
       for (let pkg of packages) {
         getPackage(pkg).then((html) => {
           const parsedHtml = JSON.parse(html);

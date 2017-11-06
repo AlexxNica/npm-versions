@@ -1,8 +1,8 @@
 import * as https from 'https';
 import * as chalk from 'chalk';
+import utils from './utils';
 
 const fetch = (options) => {
-
   return new Promise((resolve, reject) => {
     const requestOptions = {
       hostname: '',
@@ -14,26 +14,27 @@ const fetch = (options) => {
       },
     }
 
-    if ((typeof options.registryUrl === 'undefined' || options.registryUrl.length === 0) || (typeof options.packageName === 'undefined' || options.packageName.length === 0) ){ return console.error('Error! The registry URL and package name must be set correctly.'); }
+    if (
+      (typeof options.registryUrl === 'undefined' || options.registryUrl.length === 0)
+      || (typeof options.packageName === 'undefined' || options.packageName.length === 0)
+    ) {
+      return console.error('Error! The registry URL and package name must be set correctly.');
+    }
 
-    options.registryUrl = options.registryUrl.replace(/^(https)|(:\/\/)|(www)|(\/)$/ig, '');
-    options.registryPath = `/-/package/${options.packageName}/dist-tags`;
-    requestOptions.hostname = options.registryUrl;
-    requestOptions.path = options.registryPath;
+    // options.registryUrl = options.registryUrl.replace(/^(https?)|(:\/\/)|(www)|(\/)$/ig, '');
+    // options.registryPath = `/-/package/${options.packageName}/dist-tags`;
+    requestOptions.hostname = utils.getOnlyHostname(options.registryUrl);
+    requestOptions.path = `/-/package/${options.packageName}/dist-tags`;
 
     const req = https.request(requestOptions, (res) => {
       let parsed = {};
-
-      res.setEncoding("utf8");
-
       const body = [];
 
+      res.setEncoding("utf8");
       res.on('data', (d) => {
         body.push(d);
       });
-
       res.on('end', () => resolve(body.join('')));
-
     }).on('error', (e) => {
       console.error((<any>chalk).bold.red('# Summary'));
       console.error('Error: Could not connect to the registry.');
