@@ -29,18 +29,25 @@ export default yargs
           let packageResultObject = {};
 
           parsedHtmlArray.forEach(([versionName, versionValue]) => {
-            packageResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
+            // packageResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
+            packageResult.push([versionName, versionValue]);
           });
 
-          const versionsList = packageResult.reduce((accumulator, currentValue) => {
-            return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
-          });
+          // console.log(packageResult);
+
+          var list = { "latest": '3.8.0', "beta": '4.0.1', "old": '2.0.2' };
+          const keysSorted = Object.values(list).sort(semver.rcompare);
+          console.log(keysSorted);
+
+          // const versionsList = packageResult.reduce((accumulator, currentValue) => {
+          //   return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
+          // });
 
           // console.log(
           //   Object.values(parsedHtml).sort(semver.rcompare)[0]
           // );
 
-          console.log(`\`${pkg}\` - ${versionsList}`);
+          // console.log(`\`${pkg}\` - ${versionsList}`);
         });
       };
     })();
