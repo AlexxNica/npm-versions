@@ -2,6 +2,8 @@
 'use strict';
 
 import * as yargs from 'yargs';
+import * as chalk from 'chalk';
+import * as semver from 'semver';
 import getPackage from './package';
 import log from './log';
 
@@ -24,11 +26,21 @@ export default yargs
           const parsedHtml = JSON.parse(html);
           const parsedHtmlArray = Object.entries(parsedHtml);
           const packageResult = [];
+          let packageResultObject = {};
 
-          for (const item of parsedHtmlArray) {
-            packageResult.push(`[${item[0]}]: ${item[1]}`);
-          }
-          // console.log(packageResult.forEach(()=>));
+          // parsedHtmlArray.forEach(([versionName, versionValue]) => {
+          //   packageResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
+          // });
+
+          // const versionsList = packageResult.reduce((accumulator, currentValue) => {
+          //   return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
+          // });
+
+          // console.log(
+          //   Object.values(parsedHtml).sort(semver.rcompare)[0]
+          // );
+
+          console.log(`\`${pkg}\` - ${versionsList}`);
         });
       };
     })();
