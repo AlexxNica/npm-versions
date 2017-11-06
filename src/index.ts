@@ -25,19 +25,33 @@ export default yargs
         getPackage(pkg).then((html) => {
           const parsedHtml = JSON.parse(html);
           const parsedHtmlArray = Object.entries(parsedHtml);
+          const parsedSortedValues = Object.values(parsedHtml).sort(semver.rcompare);
           const packageResult = [];
           let packageResultObject = {};
 
           parsedHtmlArray.forEach(([versionName, versionValue]) => {
             // packageResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
-            packageResult.push([versionName, versionValue]);
+            // packageResult.push([versionName, versionValue]);
           });
 
-          // console.log(packageResult);
+          function getKeyByValue(object, value) {
+            return Promise.resolve(Object.keys(object).find((key) => {
+              return object[key] === value
+            }));
+          }
 
-          var list = { "latest": '3.8.0', "beta": '4.0.1', "old": '2.0.2' };
-          const keysSorted = Object.values(list).sort(semver.rcompare);
-          console.log(keysSorted);
+          // console.log(
+            getKeyByValue(
+              parsedHtml,
+              parsedSortedValues[0]
+            )
+          // );
+
+          console.log(parsedSortedValues);
+
+          // var list = { "latest": '3.8.0', "beta": '4.0.1', "old": '2.0.2' };
+          // const keysSorted = Object.values(list).sort(semver.rcompare);
+          // console.log(keysSorted);
 
           // const versionsList = packageResult.reduce((accumulator, currentValue) => {
           //   return `${accumulator} ${(<any>chalk).black('|')} ${currentValue}`;
