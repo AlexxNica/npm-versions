@@ -28,8 +28,7 @@ export default yargs
     }
     (() => {
       for (let pkg of packages) {
-        options.packageName = pkg;
-        getPackage(options).then((html) => {
+        getPackage(pkg).then((html) => {
           const parsedHtml = JSON.parse(html);
           const parsedHtmlArray = Object.entries(parsedHtml);
           const parsedSortedValues = Object.values(parsedHtml).sort(semver.rcompare);
