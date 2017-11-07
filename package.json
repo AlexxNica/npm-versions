@@ -2,7 +2,7 @@
   "private": true,
   "name": "npm-versions",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://npmversions.github.io/",
   "license": "SEE LICENSE IN PROPRIETARY.LICENSE.MD",
   "author": {
@@ -29,16 +29,8 @@
       "email": "kryndex@gmail.com"
     }
   ],
-  "main": "src/index.ts",
+  "main": "./src/index.ts",
   "preferGlobal": true,
-  "directories": {
-    "bin": "./bin",
-    "doc": "./doc",
-    "lib": "./lib",
-    "man": "./man",
-    "example": "./examples",
-    "test": "./tests"
-  },
   "bin": {
     "npm": "./src/index.ts"
   },
