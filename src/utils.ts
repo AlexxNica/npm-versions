@@ -4,8 +4,6 @@ const utils = {
      * @obj = Full object to reSort.
      * @value = String of value to search for the corresponding key inside @obj.
      */
-    console.log(obj);
-    console.log(value);
     return await Object.keys(obj).find((key) => obj[key] === value);
   },
 

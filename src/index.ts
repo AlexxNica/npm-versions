@@ -36,10 +36,8 @@ export default yargs
             }
             return semver.valid(aValidated);
           }).sort(semver.rcompare).filter(n=>n); // removes all null versions (undefined/wrong format)
-          // console.log(parsedHtml);
           const parsedSortedAllValues = parsedSortedValues.concat(badFormattedVersions);
           const packageResult = [];
-          let packageResultObject = {};
 
           utils.reSortToArray(
             parsedHtml,
