@@ -30,8 +30,11 @@ socket.setEncoding('utf8');
 // Connected
 socket.on('connect', () => {
   console.log('Connected!');
-  const buff = new Buffer([0x06, 0x00, 0xFF, 0xFF, 0x69, 0x6E, 0x66, 0x6F]);
-  socket.write(buff);
+  // const buff = new Buffer([0x06, 0x00, 0xFF, 0xFF, 0x69, 0x6E, 0x66, 0x6F]);
+  const bufferInfo = Buffer.from([0x06, 0x00, 0xFF, 0xFF]);
+  const bufferCommand = Buffer.from('info', 'utf-8');
+  const bufferString = Buffer.concat([bufferInfo, bufferCommand]);
+  socket.write(bufferString);
   // socket.write('\x06\x00\xFF\xFF\x69\x6E\x66\x6F');
   // console.log(`${socket.bufferSize}`);
   // console.log(`${socket.bytesRead}`);
