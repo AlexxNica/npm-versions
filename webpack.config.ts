@@ -1,11 +1,12 @@
 import { join, resolve } from 'path';
 import { BannerPlugin } from 'webpack';
+import * as UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
 export default {
   target: 'node',
   entry: './src/index.ts',
   output: {
-    filename: 'bundle.js',
+    filename: 'npm-versions',
     path: __dirname + '/dist',
     libraryTarget: 'commonjs2',
   },
@@ -35,6 +36,28 @@ export default {
     new BannerPlugin({
       banner: '#!/usr/bin/env node',
       raw: true,
+    }),
+
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        sourceMap: true,
+        ie8: false,
+        ecma: 8,
+        comments: false,
+        output: {
+          comments: false,
+          beautify: false,
+          bracketize: true
+        },
+        // Only activate pre-production releases
+        cache: true,
+        parallel: true,
+        toplevel: true,
+        unused: true,
+        reduce_vars: true,
+        warnings: (process.env.CUSTOM_ENV === 'debug'),
+        safari10: true,
+      },
     }),
   ],
 };

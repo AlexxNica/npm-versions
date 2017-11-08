@@ -29,17 +29,17 @@
       "email": "kryndex@gmail.com"
     }
   ],
-  "main": "./dist/bundle.js",
+  "main": "./dist/npm-versions",
   "preferGlobal": true,
   "bin": {
-    "npm-versions": "./dist/bundle.js"
+    "npm-versions": "./dist/npm-versions"
   },
   "config": {
     "publishtest": false
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",
-    "build": "webpack",
+    "build": "webpack && chmod +x dist/npm-versions",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -56,7 +56,10 @@
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "typescript": "^2.7.0-dev.20171029",
+    "uglify-es": "^3.1.8",
+    "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.8.1",
     "yargs": "^10.0.3"
-  }
+  },
+  "dependencies": {}
 }
