@@ -5,9 +5,9 @@ import * as yargs from 'yargs';
 import * as chalk from 'chalk';
 import * as semver from 'semver';
 import { Options } from './DefaultInterfaces';
-import utils from './utils';
-import log from './log';
-import packageModule from './package';
+import utils from './modules/utils';
+import log from './modules/log';
+import packageModule from './modules/package';
 
 const packages = yargs.argv._;
 const options: Options = {};

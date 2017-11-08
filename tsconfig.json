@@ -8,7 +8,16 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src"
+    "rootDirs": [
+      "./",
+      "./src"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "*": [
+        "*"
+      ]
+    }
   },
   "exclude": [
     "node_modules",
