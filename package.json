@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "npm-versions",
+  "name": "npm-versions-check",
   "description": "",
-  "version": "0.0.2",
-  "homepage": "https://npmversions.github.io/",
+  "version": "0.0.3",
+  "homepage": "https://npmversionscheck.github.io/",
   "license": "SEE LICENSE IN PROPRIETARY.LICENSE.MD",
   "author": {
     "name": "Alexandre Nicastro",
@@ -29,16 +29,17 @@
       "email": "kryndex@gmail.com"
     }
   ],
-  "main": "./src/index.ts",
+  "main": "./src/index.js",
   "preferGlobal": true,
   "bin": {
-    "npm": "./src/index.ts"
+    "npm": "./src/index.js"
   },
   "config": {
     "publishtest": false
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",
+    "build": "tsc ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

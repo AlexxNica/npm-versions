@@ -3,7 +3,7 @@
     "outDir": "build/dist",
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es6", "dom", "es2017", "esnext"],
+    "lib": ["es2015", "es6", "es2017", "esnext", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
