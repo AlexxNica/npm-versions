@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "npm-versions-check",
+  "name": "npm-versions",
   "description": "",
   "version": "0.0.3",
-  "homepage": "https://npmversionscheck.github.io/",
+  "homepage": "https://npmversions.github.io/",
   "license": "SEE LICENSE IN PROPRIETARY.LICENSE.MD",
   "author": {
     "name": "Alexandre Nicastro",
@@ -29,10 +29,10 @@
       "email": "kryndex@gmail.com"
     }
   ],
-  "main": "./src/index.js",
+  "main": "./dist/bundle.js",
   "preferGlobal": true,
   "bin": {
-    "npm": "./src/index.js"
+    "npm-versions": "./dist/bundle.js"
   },
   "config": {
     "publishtest": false

@@ -1,4 +1,5 @@
 import { join, resolve } from 'path';
+import { BannerPlugin } from 'webpack';
 
 export default {
   target: 'node',
@@ -29,4 +30,11 @@ export default {
   externals: {
     yargs: 'yargs'
   },
+
+  plugins: [
+    new BannerPlugin({
+      banner: '#!/usr/bin/env node',
+      raw: true,
+    }),
+  ],
 };
