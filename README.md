@@ -1,5 +1,5 @@
 # NPM Versions
-Tool to show all versions of a package without having to use anything other than the terminal.
+See all versions of a package without having to use anything other than your terminal.
 
 # Roadmap
 1. Decouple everything into modules.
