@@ -2,7 +2,7 @@
 See all versions of a package without having to use anything other than your terminal.
 
 # Installation
-`npm i -g npm-versions`
+`npm i -g @alexxnica/npm-versions`
 
 # Roadmap
 1. Decouple everything into modules.
