@@ -1,7 +1,7 @@
 {
   "name": "@alexxnica/npm-versions",
   "description": "Show versions available for the specified package.",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "homepage": "https://npmversions.github.io/",
   "license": "MIT",
   "author": {
