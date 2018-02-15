@@ -21,6 +21,7 @@ util.inspect.defaultOptions = {
 const packages = yargs.argv._;
 const options: Options = {};
 
+// @TODO(alexxnica): Improve and document this mess.
 export default yargs
   .usage('Usage: <packageName> [otherPackages...] [options]')
   .example('', '')
@@ -41,22 +42,16 @@ export default yargs
             const aValidated = semver.valid(a);
             if (aValidated === null) {
               badFormattedVersions.push(a);
-              // console.log(a);
               return;
             }
-            // console.log(semver.valid(aValidated));
             return semver.valid(aValidated);
           }).sort(semver.rcompare).filter(n=>n); // removes all null versions (undefined/wrong format)
           const parsedSortedAllValues = parsedSortedValues.concat(badFormattedVersions);
           const packageResult = [];
-          // console.log(parsedSortedAllValues);
-          // console.log(parsedHtml);
 
           utils.reSortToArray(parsedHtml).then((packagesSorted) => {
-            // console.log(packagesSorted);
             const pkgResult = [];
             for (const res of packagesSorted) {
-              // console.log(res);
               const versionName = res[0];
               const versionValue = res[1];
               pkgResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
