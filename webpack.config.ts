@@ -49,7 +49,7 @@ export default {
           beautify: false,
           bracketize: true
         },
-        // Only activate pre-production releases
+        // Only activate for pre-production releases
         cache: true,
         parallel: true,
         toplevel: true,
