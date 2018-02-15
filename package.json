@@ -1,9 +1,9 @@
 {
   "name": "@alexxnica/npm-versions",
-  "description": "",
+  "description": "Show versions available for the specified package.",
   "version": "0.0.8",
   "homepage": "https://npmversions.github.io/",
-  "license": "SEE LICENSE IN PROPRIETARY.LICENSE.MD",
+  "license": "MIT",
   "author": {
     "name": "Alexandre Nicastro",
     "email": "kryndex@gmail.com",

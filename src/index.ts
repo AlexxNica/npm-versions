@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
+import * as util from 'util';
 import * as yargs from 'yargs';
 import * as chalk from 'chalk';
 import * as semver from 'semver';
@@ -8,6 +9,14 @@ import { Options } from './DefaultInterfaces';
 import utils from './modules/utils';
 import log from './modules/log';
 import packageModule from './modules/package';
+
+util.inspect.defaultOptions = {
+  colors: true,
+  depth: 3,
+  maxArrayLength: null,
+  showHidden: true,
+  // breakLength: Infinity,
+};
 
 const packages = yargs.argv._;
 const options: Options = {};
@@ -28,23 +37,26 @@ export default yargs
           const parsedHtml = JSON.parse(html);
           const parsedHtmlArray = Object.entries(parsedHtml);
           const badFormattedVersions = [];
-          const parsedSortedValues = Object.values(parsedHtml).map((a) => {
+          const parsedSortedValues = Object.values(parsedHtml).map((a: any) => {
             const aValidated = semver.valid(a);
             if (aValidated === null) {
               badFormattedVersions.push(a);
+              // console.log(a);
               return;
             }
+            // console.log(semver.valid(aValidated));
             return semver.valid(aValidated);
           }).sort(semver.rcompare).filter(n=>n); // removes all null versions (undefined/wrong format)
           const parsedSortedAllValues = parsedSortedValues.concat(badFormattedVersions);
           const packageResult = [];
+          // console.log(parsedSortedAllValues);
+          // console.log(parsedHtml);
 
-          utils.reSortToArray(
-            parsedHtml,
-            parsedSortedAllValues
-          ).then((packagesSorted) => {
+          utils.reSortToArray(parsedHtml).then((packagesSorted) => {
+            // console.log(packagesSorted);
             const pkgResult = [];
             for (const res of packagesSorted) {
+              // console.log(res);
               const versionName = res[0];
               const versionValue = res[1];
               pkgResult.push(`${(<any>chalk).bold.blueBright(versionName)}: ${versionValue}`);
